@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Dynamic Resume</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 20px;
+        }
+
+        .resume-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="resume-container">
+    <div class="header">Resume</div>
+
+    <div class="section">
+        <h2>Contact Information</h2>
+        <p><strong>Name:</strong> <span th:text="${user.name}">John Doe</span></p>
+        <p><strong>Email:</strong> <span th:text="${user.email}">john.doe@example.com</span></p>
+        <p><strong>Phone:</strong> <span th:text="${user.phone}">123-456-7890</span></p>
+    </div>
+
+    <div class="section">
+        <h2>Education</h2>
+        <p><strong>Qualification:</strong> <span th:text="${user.quili}">Bachelor's Degree in Computer Science</span></p>
+    </div>
+
+    <div class="section">
+        <h2>Personal Information</h2>
+        <p><strong>Gender:</strong> <span th:text="${user.gender}">Male</span></p>
+        <p><strong>Date of Birth:</strong> <span th:text="${user.dob}">01/01/1990</span></p>
+        <p><strong>Address:</strong> <span th:text="${user.address}">123 Main St, Cityville</span></p>
+    </div>
+
+    <div class="section">
+        <h2>Skills</h2>
+        <p><strong>Skill:</strong> <span th:text="${user.skill}">Java, Spring, HTML/CSS, JavaScript</span></p>
+    </div>
+
+    <div class="section">
+        <h2>Summary</h2>
+        <p th:text="${user.summary}">Experienced software developer with a focus on web technologies. Proven expertise in building scalable and robust applications.</p>
+    </div>
+</div>
+
+</body>
+</html>

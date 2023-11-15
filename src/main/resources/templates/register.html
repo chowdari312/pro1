@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Template Designer</title>
+    <style>
+        .container {
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            width: 550px; /* Increased width */
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+            margin: 20px auto;
+        }
+
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        label.required:after {
+            content: " *";
+            color: red;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        select {
+            width: 500px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="tel"]:focus,
+        select:focus {
+            border-color: #11eb18;
+        }
+
+        .gender-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .gender-label {
+            margin-right: 10px;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            animation: slideIn 0.5s;
+        }
+
+        .success-message {
+            color: green;
+            font-weight: bold;
+            animation: slideIn 0.5s;
+        }
+
+        button {
+            background: #00ff1e;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .a 
+        {
+			text-decoration: none;
+			 background: #00ff1e;
+            color: #fff;
+            padding: 8px 19px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 300px;
+			
+		}
+		.a:hover {
+            background: #0056b3;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="registration-form" class="form" th:action="@{/registeruser}" th:object="${us}" method="post">
+            <h1>Create Your One-Page Resume</h1>
+            <div class="error-message" id="password-error-message"></div>
+           <div class="form-group">
+        <label for="name" class="required">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required="required" th:field="*{name}">
+    </div>
+            <div class="form-group">
+                <label for="email" class="required">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email"  required="required" th:feild="*{email}">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" th:feild="*{phone}">
+            </div>
+            <div class="form-group">
+                <label for="password" class="required">Create Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" required="required" th:feild="*{password}">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password" class="required">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password"  required="required">
+            </div>
+            <div class="form-group">
+                <label for="qualification">Highest Qualification</label>
+                <select id="qualification" name="qualification" th:field="*{quili}">
+                    <option value="">Select your highest qualification</option>
+                    <option value="High School">High School</option>
+                    <option value="Bachelor's Degree">Bachelor's Degree</option>
+                    <option value="Master's Degree">Master's Degree</option>
+                    <option value="Ph.D.">Ph.D.</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <div class="gender-group">
+                    <label class="gender-label">
+                        <input type="radio" id="male" name="gender" value="Male"  required="required" th:feild="*{gender}"> Male
+                    </label>
+                    <label class="gender-label">
+                        <input type="radio" id="female" name="gender" value="Female"  required="required" th:feild="*{gender}"> Female
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="birthdate">Date of Birth</label>
+                <input type="date" id="birthdate" name="birthdate" th:field="*{dob}">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="Enter your address" th:feild="*{address}">
+            </div>
+            <div class="form-group">
+                <label for="skills">Skills</label>
+                <select id="skills" name="skills" multiple="multiple" th:field="*{skill}">
+                    <option value="HTML/CSS">HTML/CSS</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Web Design">Web Design</option>
+                    <option value="Other Skills">Other Skills</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="summary">Professional Summary</label>
+                <textarea id="summary" name="summary" rows="3" cols="50" placeholder="Write a brief professional summary" th:field="*{summary}"></textarea>
+           <button type="submit" id="submit-button">Create Resume</button><a href="/login" class="a">Login</a>
+        </form>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const submitButton = document.getElementById('submit-button');
+				var v1= document.getElementById('name').value;
+				var v2 = document.getElementById('email').value;
+        // Event listener for form submission
+        submitButton.addEventListener('click', () => {
+            if (passwordInput.value == confirmPasswordInput.value && v1!="" && v2!="") {
+				 alert('Registration successful!');
+                
+            } else if(passwordInput.value !== confirmPasswordInput.value){
+                alert('Registration failed. Passwords do not match.');
+            }
+            else 
+            {
+				alert('Registration failed.');
+			}
+            
+        });
+    </script>
+</body>
+</html>
